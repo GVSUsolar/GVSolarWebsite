@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GVSU Solar Racing — About</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="bg-hex">
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-badge" aria-hidden="true"><span>GV</span></div>
+          <div class="brand-title">
+            GVSU SOLAR RACING
+            <small>Student-built solar car team</small>
+          </div>
+        </a>
+
+        <div class="nav-pill">
+          <nav class="nav-links" data-navlinks>
+            <a href="index.html">Home</a>
+            <a class="active" href="about.html">About</a>
+            <a href="members.html">Members</a>
+            <a href="sponsors.html">Sponsors</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+
+        <div class="nav-cta">
+          <a class="btn btn-dark" href="members.html#meeting">Meeting Times</a>
+          <a class="btn btn-primary" href="members.html#get-involved">Join the Team</a>
+        </div>
+
+        <button class="hamburger" data-burger aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="hero-media" style="min-height:300px;">
+          <div class="imgph">About Hero Image Placeholder</div>
+        </div>
+
+        <div class="section tight"></div>
+
+        <h1 style="text-align:center;">About Us</h1>
+        <p style="max-width:90ch; margin: 14px auto 0; text-align:center;">
+          GVSU Solar Racing is a student organization at Grand Valley State University founded in 2017.
+          We design and construct Grand Valley’s first solar-powered race car and aim to compete in events like
+          the American Solar Challenge.
+        </p>
+
+        <hr class="hr-gold" />
+
+        <div class="section tight"></div>
+
+        <h2 style="text-align:center;">Executive Board</h2>
+        <div class="section tight"></div>
+
+        <div class="people">
+          <div class="person">
+            <div class="avatar">BF</div>
+            <h3>Brian Farrell</h3>
+            <div class="role">President</div>
+          </div>
+          <div class="person">
+            <div class="avatar">PV</div>
+            <h3>Patrick Vidovic</h3>
+            <div class="role">Vice President</div>
+          </div>
+          <div class="person">
+            <div class="avatar">CG</div>
+            <h3>Carter Glatt</h3>
+            <div class="role">Electrical Lead</div>
+          </div>
+          <div class="person">
+            <div class="avatar">MM</div>
+            <h3>Mike Myers</h3>
+            <div class="role">Software Lead</div>
+          </div>
+        </div>
+
+        <div class="section tight"></div>
+
+        <div class="card">
+          <h3>Mission</h3>
+          <p>
+            Build a competitive solar vehicle while developing engineers through hands-on learning,
+            teamwork, leadership, and real-world design constraints.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <small>© <span id="year"></span> GVSU Solar Racing.</small>
+        <small><a class="btn-link" href="contact.html">Contact us</a></small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
