@@ -55,7 +55,6 @@ small{color:var(--muted)}
    ========================= */
 .bg-hex{
   position:relative;
-  overflow:hidden;
 }
 .bg-hex::before,
 .bg-hex::after{
