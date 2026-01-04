@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GVSU Solar Racing — Contact</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="bg-hex">
+  <header class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html">
+          <div class="brand-badge" aria-hidden="true"><span>GV</span></div>
+          <div class="brand-title">
+            GVSU SOLAR RACING
+            <small>Student-built solar car team</small>
+          </div>
+        </a>
+
+        <div class="nav-pill">
+          <nav class="nav-links" data-navlinks>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="members.html">Members</a>
+            <a href="sponsors.html">Sponsors</a>
+            <a class="active" href="contact.html">Contact</a>
+          </nav>
+        </div>
+
+        <div class="nav-cta">
+          <a class="btn btn-dark" href="members.html#meeting">Meeting Times</a>
+          <a class="btn btn-primary" href="members.html#get-involved">Join the Team</a>
+        </div>
+
+        <button class="hamburger" data-burger aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SOCIAL -->
+    <section class="section">
+      <div class="container" style="text-align:center;">
+        <h1>Contact</h1>
+        <p style="max-width:70ch; margin: 12px auto 0;">
+          Replace these with your real social links (Instagram, LakerLink, LinkedIn).
+        </p>
+        <div class="social-row" id="social">
+          <a class="social-pill" href="#" aria-label="Instagram">Instagram</a>
+          <a class="social-pill" href="#" aria-label="LakerLink">LAKERLINK</a>
+          <a class="social-pill" href="#" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM -->
+    <section class="section">
+      <div class="container">
+        <div class="card" style="max-width:920px; margin:0 auto;">
+          <h2 style="text-align:center;">Send Us a Message</h2>
+          <div class="section tight"></div>
+
+          <!-- NOTE: This is front-end only. Wire to Formspree/Netlify later if you want. -->
+          <form class="form" action="#" method="post">
+            <div class="field-row">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" placeholder="Jane Smith" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="jane@company.com" />
+              </div>
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Your message..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+
+            <p style="text-align:center; margin-top:14px;">
+              Prefer email? Use <b>grandvalleysolarracing@gmail.com</b> (replace if needed).
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <small>© <span id="year"></span> GVSU Solar Racing.</small>
+        <small><a class="btn-link" href="sponsors.html">Sponsor the project</a></small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
