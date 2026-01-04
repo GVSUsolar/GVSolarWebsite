@@ -34,6 +34,8 @@ body{
               linear-gradient(180deg, var(--bg), var(--bg2));
   color:var(--text);
   line-height:1.55;
+  position: relative;
+  z-index: 0;
 }
 a{color:inherit; text-decoration:none}
 img{max-width:100%; display:block}
@@ -58,6 +60,7 @@ small{color:var(--muted)}
 }
 .bg-hex::before,
 .bg-hex::after{
+  z-index: -1;
   content:"";
   position:absolute;
   inset:-20%;
