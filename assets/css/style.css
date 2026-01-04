@@ -279,11 +279,18 @@ small{color:var(--muted)}
   border-radius: var(--radius-lg);
   overflow:hidden;
   border:1px solid rgba(255,255,255,.12);
-  background:
-    linear-gradient(135deg, rgba(29,78,216,.30), rgba(0,0,0,.15)),
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  background: #0b0b0b;             /* fallback behind photo */
   box-shadow: var(--shadow);
 }
+
+.hero-media img.hero-img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;               /* KEY: fills frame */
+  object-position: center;         /* adjust if you want "top" etc */
+}
+
 .hero-media .imgph{
   position:absolute;
   inset:0;
@@ -294,20 +301,12 @@ small{color:var(--muted)}
   letter-spacing:.6px;
   text-transform: uppercase;
 }
-.hero-media::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  box-shadow: inset 0 0 0 10px rgba(29,78,216,.22);
-  border-radius: var(--radius-lg);
-  pointer-events:none;
-}
 
 .hero-copy{
   border-radius: var(--radius-lg);
   padding: 26px 26px 22px;
   border:1px solid rgba(255,255,255,.12);
-  background: linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.25));
+  background: #0b0b0b;
   box-shadow: var(--shadow);
 }
 .hero-copy p{margin:12px 0 18px; max-width: 52ch}
