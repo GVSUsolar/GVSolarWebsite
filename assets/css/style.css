@@ -283,7 +283,7 @@ small{color:var(--muted)}
   box-shadow: var(--shadow);
 }
 
-.hero-media img.hero-img{
+.hero-media .hero-img{
   width: 100%;
   height: 100%;
   display: block;
