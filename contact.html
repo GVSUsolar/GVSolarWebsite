@@ -44,11 +44,11 @@
       <div class="container" style="text-align:center;">
         <h1>Contact</h1>
         <p style="max-width:70ch; margin: 12px auto 0;">
-          Replace these with your real social links (Instagram, LakerLink, LinkedIn).
+          Reach out to our team — we’d love to hear from you.
         </p>
         <div class="social-row" id="social">
           <a class="social-pill" href="#" aria-label="Instagram">Instagram</a>
-          <a class="social-pill" href="#" aria-label="LakerLink">LAKERLINK</a>
+          <a class="social-pill" href="#" aria-label="LakerLink">LakerLink</a>
           <a class="social-pill" href="#" aria-label="LinkedIn">LinkedIn</a>
         </div>
       </div>
@@ -61,22 +61,28 @@
           <h2 style="text-align:center;">Send Us a Message</h2>
           <div class="section tight"></div>
 
-          <!-- NOTE: This is front-end only. Wire to Formspree/Netlify later if you want. -->
-          <form class="form" action="#" method="post">
+          <form
+            class="form"
+            id="contact-form"
+            action="https://formspree.io/f/mdaaodbn"
+            method="POST"
+          >
+            <input type="hidden" name="_subject" value="GVSU Solar Racing Website Message">
+
             <div class="field-row">
               <div>
                 <label for="name">Name</label>
-                <input id="name" name="name" placeholder="Jane Smith" />
+                <input id="name" name="name" placeholder="Jane Smith" required />
               </div>
               <div>
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="jane@company.com" />
+                <input id="email" name="email" type="email" placeholder="jane@company.com" required />
               </div>
             </div>
 
             <div>
               <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Your message..."></textarea>
+              <textarea id="message" name="message" placeholder="Your message..." required></textarea>
             </div>
 
             <div class="form-actions">
@@ -87,6 +93,12 @@
               Prefer email? Use <b>grandvalleysolarracing@gmail.com</b>
             </p>
           </form>
+
+          <!-- Success message -->
+          <div id="form-success" style="display:none; text-align:center;">
+            <h3>Thank you!</h3>
+            <p>Your message has been sent. We’ll get back to you soon.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -104,6 +116,32 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const form = document.getElementById("contact-form");
+    const success = document.getElementById("form-success");
+
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (response.ok) {
+          form.reset();
+          form.style.display = "none";
+          success.style.display = "block";
+        } else {
+          alert("Oops! Something went wrong. Please try again later.");
+        }
+      } catch (err) {
+        alert("Network error. Please try again later.");
+      }
+    });
   </script>
 </body>
 </html>
