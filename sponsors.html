@@ -27,17 +27,53 @@
     .tier-art-bronze{ background-image: linear-gradient(120deg, rgba(252,211,197,.22), rgba(234,88,12,.20), rgba(180,83,9,.22)); }
     .tier-art-individual{ background-image: linear-gradient(120deg, rgba(167,243,208,.20), rgba(34,197,94,.18), rgba(20,184,166,.18)); }
 
-    .sponsor-pills{display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
-    .sponsor-pill{
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(10,12,16,.55);
-      color: rgba(255,255,255,.86);
-      font-weight:600;
-      font-size:14px;
-      letter-spacing:.2px;
-      backdrop-filter: blur(6px);
+    /* Current Sponsors grid (uses same sizing rules as sponsor strip) */
+    .current-sponsors{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap: 22px;
+      margin-top: 18px;
+    }
+    .current-sponsor-card{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height: 110px;
+      width: min(260px, 100%);
+      padding: 14px 18px;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .current-sponsor-card:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 16px 34px rgba(0,0,0,.45);
+    }
+    .current-sponsor-card img{
+      max-height: 70px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      display:block;
+    }
+    .current-sponsor-name{
+      margin-top: 10px;
+      text-align:center;
+      font-weight: 750;
+      color: rgba(255,255,255,.92);
+    }
+
+    @media (max-width: 768px){
+      .current-sponsor-card{
+        height: 92px;
+      }
+      .current-sponsor-card img{
+        max-height: 56px;
+        max-width: 180px;
+      }
     }
   </style>
 </head>
@@ -98,15 +134,37 @@
       <div class="container">
         <h2 style="text-align:center;">Current Sponsors</h2>
         <p style="text-align:center; max-width:80ch; margin:10px auto 0;">
-          Add sponsor names here (text only). When you have logos later, you can update this section on the Sponsors page.
+          Thank you to the companies helping make GVSU Solar Racing possible.
         </p>
-        <div class="section tight"></div>
-        <div class="sponsor-pills">
-          <div class="sponsor-pill">Sponsor Name</div>
-          <div class="sponsor-pill">Sponsor Name</div>
-          <div class="sponsor-pill">Sponsor Name</div>
-          <div class="sponsor-pill">Sponsor Name</div>
-          <div class="sponsor-pill">Sponsor Name</div>
+
+        <div class="current-sponsors">
+          <div>
+            <div class="current-sponsor-card">
+              <img src="assets/img/ArrayLogo.jpg" alt="Array Of Engineers logo" loading="lazy">
+            </div>
+            <div class="current-sponsor-name">Array Of Engineers</div>
+          </div>
+
+          <div>
+            <div class="current-sponsor-card">
+              <img src="assets/img/ConveyorLogo.jpg" alt="Conveyor Concepts logo" loading="lazy">
+            </div>
+            <div class="current-sponsor-name">Conveyor Concepts</div>
+          </div>
+
+          <div>
+            <div class="current-sponsor-card">
+              <img src="assets/img/FirstSolarLogo2.png" alt="First Solar logo" loading="lazy">
+            </div>
+            <div class="current-sponsor-name">First Solar</div>
+          </div>
+
+          <div>
+            <div class="current-sponsor-card">
+              <img src="assets/img/KreminLogo.png" alt="Kremin Inc. logo" loading="lazy">
+            </div>
+            <div class="current-sponsor-name">Kremin Inc.</div>
+          </div>
         </div>
       </div>
     </section>
