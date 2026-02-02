@@ -313,31 +313,64 @@ small{color:var(--muted)}
 .hero-actions{display:flex; gap:12px; flex-wrap:wrap}
 
 /* =========================
-   Sponsor strip
+   Sponsor strip (UPDATED)
    ========================= */
 .sponsor-strip{
   border-top:1px solid rgba(244,185,66,.18);
   border-bottom:1px solid rgba(244,185,66,.18);
   background: rgba(0,0,0,.35);
-  padding: 16px 0;
+  padding: 32px 0;
 }
+
 .sponsor-row{
   display:flex;
-  gap: 22px;
+  justify-content:center;
   align-items:center;
-  justify-content:space-between;
+  gap: 60px;
   flex-wrap:wrap;
 }
+
+/* each logo card */
 .sponsor-logo{
-  height: 28px;
-  width: 160px;
-  border-radius: 10px;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.05);
-  display:grid;
-  place-items:center;
-  color: rgba(255,255,255,.70);
-  font-weight:800;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height: 90px;              /* main control for size */
+  padding: 10px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.sponsor-logo:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 12px 26px rgba(0,0,0,.45);
+}
+
+/* the image inside the card */
+.sponsor-logo img{
+  max-height: 65px;          /* makes all logos visually consistent */
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+}
+
+/* mobile adjustments */
+@media (max-width: 768px){
+  .sponsor-strip{ padding: 22px 0; }
+  .sponsor-row{ gap: 26px; }
+
+  .sponsor-logo{
+    height: 72px;
+    padding: 8px 16px;
+  }
+
+  .sponsor-logo img{
+    max-height: 50px;
+    max-width: 160px;
+  }
 }
 
 /* =========================
