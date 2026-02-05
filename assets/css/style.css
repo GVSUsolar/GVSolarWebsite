@@ -748,3 +748,46 @@ pre, code {
     max-width: 100%;
   }
 }
+/* =====================================================
+   MOBILE NAV FIX (keeps links clickable + single-row)
+   ===================================================== */
+@media (max-width: 920px){
+  /* keep the header layout stable */
+  .nav{
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  /* prevent the center pill from collapsing/stacking */
+  .nav-pill{
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: flex-end; /* since CTA hides on mobile */
+  }
+
+  /* the actual links row becomes horizontally scrollable instead of wrapping */
+  .nav-links{
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    scrollbar-width: none;          /* Firefox */
+  }
+  .nav-links::-webkit-scrollbar{ display:none; } /* Safari/Chrome */
+
+  /* make each link a fixed “pill” and fully tappable */
+  .nav-links a{
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  /* ensure the sticky header itself doesn't intercept taps weirdly */
+  .topbar{
+    pointer-events: auto;
+  }
+}
