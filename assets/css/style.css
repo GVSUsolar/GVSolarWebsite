@@ -26,11 +26,13 @@
 
 *{box-sizing:border-box}
 
-/* FIX: prevent any horizontal scroll caused by rotated/oversized backgrounds */
 html,body{
   height:100%;
   width:100%;
-  overflow-x:hidden;
+
+  /* FIX: stop extra right space but keep vertical scrolling */
+  overflow-x: clip;     /* use 'hidden' if you need older Safari support */
+  overflow-y: auto;
 }
 
 body{
@@ -64,11 +66,9 @@ small{color:var(--muted)}
    ========================= */
 .bg-hex{
   position:relative;
-
   /* FIX: clip rotated/inset pseudo elements so they can't create page width */
   overflow:hidden;
 }
-
 .bg-hex::before,
 .bg-hex::after{
   z-index: -1;
@@ -84,16 +84,14 @@ small{color:var(--muted)}
   opacity:.7;
   pointer-events:none;
   filter: blur(.1px);
-
+  /* subtle repeating hex outlines via SVG data */
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='156' viewBox='0 0 180 156'%3E%3Cg fill='none' stroke='%232563eb' stroke-opacity='0.22' stroke-width='2'%3E%3Cpath d='M45 3 90 29 90 81 45 107 0 81 0 29Z'/%3E%3Cpath d='M135 3 180 29 180 81 135 107 90 81 90 29Z'/%3E%3Cpath d='M90 78 135 104 135 156 90 182 45 156 45 104Z'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 260px 226px;
   background-repeat: repeat;
-
   transform: rotate(-6deg);
   transform-origin:center;
 }
-
 .bg-hex::after{
   opacity:.55;
   transform: rotate(8deg) scale(1.06);
@@ -347,11 +345,12 @@ small{color:var(--muted)}
   flex-wrap:wrap;
 }
 
+/* each logo card */
 .sponsor-logo{
   display:flex;
   align-items:center;
   justify-content:center;
-  height: 90px;
+  height: 90px;              /* main control for size */
   padding: 10px 20px;
   background: #ffffff;
   border-radius: 12px;
@@ -365,13 +364,15 @@ small{color:var(--muted)}
   box-shadow: 0 12px 26px rgba(0,0,0,.45);
 }
 
+/* the image inside the card */
 .sponsor-logo img{
-  max-height: 65px;
+  max-height: 65px;          /* makes all logos visually consistent */
   width: auto;
   max-width: 180px;
   object-fit: contain;
 }
 
+/* mobile adjustments */
 @media (max-width: 768px){
   .sponsor-strip{ padding: 22px 0; }
   .sponsor-row{ gap: 26px; }
