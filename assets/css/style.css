@@ -721,3 +721,33 @@ footer{
     touch-action: none;
   }
 }
+
+
+/* =====================================================
+   SAFARI SCROLL FIX (iOS Safari)
+   ===================================================== */
+
+/* Let Safari scroll the page normally */
+html{
+  height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+body{
+  min-height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* When menu is open, lock scroll in an iOS-safe way */
+@media (max-width: 920px){
+  body.nav-open{
+    position: fixed;
+    width: 100%;
+    overflow: hidden !important;
+    /* REMOVE touch-action:none (can break Safari scrolling/taps) */
+    touch-action: auto;
+  }
+}
