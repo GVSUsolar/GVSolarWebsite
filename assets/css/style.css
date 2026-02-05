@@ -643,3 +643,51 @@ footer{
   flex-wrap:wrap;
 }
 .footer-row small{max-width: 70ch}
+
+
+/* =====================================================
+   GLOBAL HORIZONTAL OVERFLOW FIX  (DO NOT REMOVE)
+   ===================================================== */
+
+/* Prevent page from becoming wider than viewport */
+html, body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+/* Allow flex/grid children to shrink instead of forcing width */
+.nav,
+.nav-pill,
+.nav-links,
+.brand,
+.nav-cta,
+.hero-wrap,
+.grid-2,
+.grid-3,
+.people,
+.media-card,
+.tier,
+.tier-card,
+.section,
+.container {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+/* If anything uses viewport width, stop it from exceeding screen */
+*[style*="100vw"],
+[class*="vw"] {
+  max-width: 100% !important;
+}
+
+/* Media safety (images can cause overflow) */
+img, video, canvas, svg {
+  max-width: 100% !important;
+  height: auto;
+}
+
+/* Code blocks safety */
+pre, code {
+  max-width: 100%;
+  overflow-x: auto;
+}
