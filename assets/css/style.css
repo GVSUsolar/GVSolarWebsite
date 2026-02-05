@@ -691,3 +691,60 @@ pre, code {
   max-width: 100%;
   overflow-x: auto;
 }
+
+
+/* =====================================================
+   iOS / Mobile HORIZONTAL OVERFLOW FIX
+   ===================================================== */
+
+/* iOS Safari/Chrome: ensure the layout never exceeds the viewport width */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  /* Force the main page wrapper(s) to not exceed screen */
+  body, .bg-hex, .topbar, .section, footer, .container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* iOS flex bug: children can overflow unless explicitly allowed to shrink */
+  .nav, .nav * ,
+  .hero-wrap, .grid-2, .grid-3, .tier, .tier-card, .media-card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+/* If any element uses 100vw, it will overflow on mobile (scrollbar/safe-area).
+   This clamps it back to 100%. */
+@media (max-width: 820px) {
+  .topbar, .section, footer, .bg-hex {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Common hidden offender: fixed backgrounds/overlays */
+  .bg-hex::before,
+  .bg-hex::after{
+    left: 0;
+    right: 0;
+  }
+
+  /* Prevent long nav pills / buttons from forcing width */
+  .nav-links{
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Make sure containers never become wider than screen */
+  .container{
+    width: 100%;
+    max-width: 100%;
+  }
+}
