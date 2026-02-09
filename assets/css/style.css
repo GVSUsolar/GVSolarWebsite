@@ -262,6 +262,19 @@ small{color:var(--muted)}
   .nav-cta{display:none}
   .hamburger{display:inline-flex; align-items:center; justify-content:center}
   .nav-pill{justify-content:flex-end}
+
+   .nav-links{
+    pointer-events: none;
+  }
+
+  body.nav-open .nav-links{
+    pointer-events: auto;
+  }
+
+  /* Also make sure overlay can be tapped */
+  .nav-overlay{
+    pointer-events: auto;
+  }
 }
 @media (max-width: 720px){
   .grid-3{grid-template-columns: 1fr}
