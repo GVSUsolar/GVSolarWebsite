@@ -1,3 +1,5 @@
+alert("main.js loaded");
+
 (() => {
   const burger = document.querySelector("[data-burger]");
   const navLinks = document.querySelector("[data-navlinks]");
