@@ -258,24 +258,75 @@ small{color:var(--muted)}
   gap: 18px;
 }
 @media (max-width: 920px){
-  .grid-2{grid-template-columns: 1fr; }
-  .nav-cta{display:none}
-  .hamburger{display:inline-flex; align-items:center; justify-content:center}
-  .nav-pill{justify-content:flex-end}
 
-   .nav-links{
+  /* =========================
+     Layout adjustments
+     ========================= */
+  .grid-2{ grid-template-columns: 1fr; }
+  .nav-cta{ display: none; }
+  .nav-pill{ justify-content: flex-end; }
+
+  .hamburger{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1006;
+  }
+
+  /* =========================
+     Off-canvas drawer
+     ========================= */
+  .nav-links{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(78vw, 320px);
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: rgba(0,0,0,.92);
+    backdrop-filter: blur(12px);
+    border-left: 1px solid rgba(255,255,255,.12);
+
+    transform: translateX(110%);
+    transition: transform .25s ease;
+
+    z-index: 1005;
+
+    /* 🔑 iOS FIX */
     pointer-events: none;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   body.nav-open .nav-links{
+    transform: translateX(0);
     pointer-events: auto;
   }
 
-  /* Also make sure overlay can be tapped */
-  .nav-overlay{
-    pointer-events: auto;
+  .nav-links a{
+    display: block;
+    padding: 12px 14px;
+    border-radius: 14px;
   }
-}
+
+  /* =========================
+     Overlay (LEFT SIDE ONLY)
+     ========================= */
+  .nav-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    /* Lea*
+
 @media (max-width: 720px){
   .grid-3{grid-template-columns: 1fr}
 }
