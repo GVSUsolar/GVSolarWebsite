@@ -1,17 +1,14 @@
-// Mobile nav toggle (simple)
-const burger = document.querySelector("[data-burger]");
-const navLinks = document.querySelector("[data-navlinks]");
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.querySelector("[data-burger]");
+  const navLinks = document.querySelector("[data-navlinks]");
 
-if (burger && navLinks) {
+  if (!burger || !navLinks) return;
+
   burger.addEventListener("click", () => {
-    navLinks.classList.toggle("open");
-    // quick inline open behavior for small screens
-    if (navLinks.classList.contains("open")) {
-      navLinks.style.flexWrap = "wrap";
-      navLinks.style.justifyContent = "center";
-    } else {
-      navLinks.style.flexWrap = "";
-      navLinks.style.justifyContent = "";
-    }
+    const isOpen = navLinks.classList.toggle("open");
+    burger.classList.toggle("open", isOpen);
+
+    // Accessibility
+    burger.setAttribute("aria-expanded", isOpen);
   });
-}
+});
