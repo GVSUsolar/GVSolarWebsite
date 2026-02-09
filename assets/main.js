@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
   const burger = document.querySelector("[data-burger]");
   const navLinks = document.querySelector("[data-navlinks]");
   const overlay = document.getElementById("navOverlay");
@@ -21,21 +21,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.contains("nav-open") ? closeMenu() : openMenu();
   };
 
-  // Toggle on burger click
-  burger.addEventListener("click", toggleMenu);
-
-  // Close when clicking the overlay
-  if (overlay) {
-    overlay.addEventListener("click", closeMenu);
-  }
-
-  // Close when clicking a nav link (mobile UX)
-  navLinks.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", closeMenu);
+  // Click works everywhere
+  burger.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleMenu();
   });
 
-  // Close on Escape
+  // iOS reliability (optional but helps)
+  burger.addEventListener("touchend", (e) => {
+    e.preventDefault();
+    toggleMenu();
+  }, { passive: false });
+
+  if (overlay) overlay.addEventListener("click", closeMenu);
+
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeMenu();
   });
-});
+})();
