@@ -29,7 +29,7 @@
 html,body{
   height:100%;
   width:100%;
-  /* iOS/Safari friendly: stop sideways overflow, keep vertical scroll */
+  /* stop sideways overflow, keep vertical scroll */
   overflow-x:hidden;
   overflow-y:auto;
 }
@@ -45,6 +45,7 @@ body{
   position: relative;
   z-index: 0;
 }
+
 a{color:inherit; text-decoration:none}
 img{max-width:100%; display:block}
 p{color:var(--muted)}
@@ -65,9 +66,12 @@ small{color:var(--muted)}
    ========================= */
 .bg-hex{
   position:relative;
-  /* clip rotated/inset pseudo elements so they can't create page width */
-  overflow:hidden;
+  /* keep the visual “clipping” safely without killing vertical scroll */
+  overflow-x:hidden;
+  overflow-y:visible;
 }
+
+/* hex pattern layers */
 .bg-hex::before,
 .bg-hex::after{
   z-index: -1;
@@ -87,6 +91,7 @@ small{color:var(--muted)}
   transform: rotate(-6deg);
   transform-origin:center;
 }
+
 .bg-hex::after{
   opacity:.55;
   transform: rotate(8deg) scale(1.06);
@@ -104,6 +109,7 @@ small{color:var(--muted)}
   background: rgba(0,0,0,.35);
   border-bottom:1px solid rgba(255,255,255,.06);
 }
+
 .nav{
   display:flex;
   align-items:center;
@@ -118,6 +124,7 @@ small{color:var(--muted)}
   gap:10px;
   min-width: 210px;
 }
+
 .brand-badge{
   width:46px;
   height:46px;
@@ -128,15 +135,18 @@ small{color:var(--muted)}
   place-items:center;
   box-shadow: var(--shadow);
 }
+
 .brand-badge span{
   font-weight:900;
   letter-spacing:.5px;
 }
+
 .brand-title{
   font-weight:800;
   letter-spacing:.2px;
   line-height:1.1;
 }
+
 .brand-title small{
   display:block;
   font-weight:600;
@@ -150,6 +160,7 @@ small{color:var(--muted)}
   align-items:center;
   justify-content:center;
 }
+
 .nav-links{
   display:flex;
   gap:6px;
@@ -158,6 +169,7 @@ small{color:var(--muted)}
   border:1px solid rgba(255,255,255,.14);
   background: rgba(0,0,0,.38);
 }
+
 .nav-links a{
   padding:8px 14px;
   border-radius:999px;
@@ -165,9 +177,11 @@ small{color:var(--muted)}
   color:rgba(255,255,255,.92);
   transition: .2s ease;
 }
+
 .nav-links a:hover{
   background: rgba(255,255,255,.08);
 }
+
 .nav-links a.active{
   background: rgba(255,255,255,.12);
   outline: 1px solid rgba(244,185,66,.30);
@@ -195,16 +209,21 @@ small{color:var(--muted)}
   transition: .2s ease;
   cursor:pointer;
 }
+
 .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10)}
+
 .btn-primary{
   border:1px solid rgba(244,185,66,.55);
   background: linear-gradient(180deg, rgba(244,185,66,.95), rgba(244,185,66,.75));
   color:#1a1205;
 }
+
 .btn-primary:hover{filter: brightness(1.03)}
+
 .btn-dark{
   background: rgba(0,0,0,.35);
 }
+
 .btn-link{
   border: none;
   background: transparent;
@@ -212,6 +231,7 @@ small{color:var(--muted)}
   color: var(--gold2);
   font-weight: 750;
 }
+
 .btn-link:hover{ text-decoration: underline; transform:none }
 
 .hamburger{
@@ -222,6 +242,7 @@ small{color:var(--muted)}
   border:1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.06);
 }
+
 .hamburger:active{transform: translateY(1px)}
 
 /* =========================
@@ -230,7 +251,9 @@ small{color:var(--muted)}
 .section{
   padding: 70px 0;
 }
+
 .section.tight{padding: 45px 0}
+
 .kicker{
   color: rgba(244,185,66,.95);
   font-weight:800;
@@ -238,6 +261,7 @@ small{color:var(--muted)}
   text-transform: uppercase;
   font-size:.78rem;
 }
+
 .hr-gold{
   height:1px;
   width:100%;
@@ -252,32 +276,31 @@ small{color:var(--muted)}
   gap: 26px;
   align-items:center;
 }
+
 .grid-3{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
-@media (max-width: 920px){
 
-  /* =========================
-     Layout adjustments
-     ========================= */
+/* =========================
+   MOBILE NAV DRAWER (single source of truth)
+   ========================= */
+@media (max-width: 920px){
   .grid-2{ grid-template-columns: 1fr; }
   .nav-cta{ display: none; }
-  .nav-pill{ justify-content: flex-end; }
+  .nav-pill{ justify-content:flex-end; }
 
   .hamburger{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
     position: relative;
     z-index: 1006;
   }
 
-  /* =========================
-     Off-canvas drawer
-     ========================= */
+  /* drawer */
   .nav-links{
     position: fixed;
     top: 0;
@@ -288,8 +311,11 @@ small{color:var(--muted)}
 
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
     gap: 10px;
 
+    border-radius: 0;
     background: rgba(0,0,0,.92);
     backdrop-filter: blur(12px);
     border-left: 1px solid rgba(255,255,255,.12);
@@ -312,43 +338,46 @@ small{color:var(--muted)}
   }
 
   .nav-links a{
-    display: block;
+    display:block;
     padding: 12px 14px;
     border-radius: 14px;
   }
 
-  /* =========================
-     Overlay (LEFT SIDE ONLY)
-     ========================= */
+  /* overlay covers ONLY the left side (so links stay clickable) */
   .nav-overlay{
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
 
-    /* leave space for the drawer on the right */
     right: min(78vw, 320px);
 
     background: rgba(0,0,0,.55);
     display: none;
-
     z-index: 1004;
   }
 
   body.nav-open .nav-overlay{
-    display: block;
+    display:block;
   }
+}
 
-  /* =========================
-     iOS-safe scroll lock (JS will set body top)
-     ========================= */
-  body.nav-open{
-    position: fixed;
-    width: 100%;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-  }
+@media (max-width: 720px){
+  .grid-3{grid-template-columns: 1fr}
+}
+
+/* =========================
+   Hero
+   ========================= */
+.hero{
+  padding: 34px 0 26px;
+}
+
+.hero-wrap{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 24px;
+  align-items:stretch;
 }
 
 @media (max-width: 980px){
@@ -391,6 +420,7 @@ small{color:var(--muted)}
   background: #0b0b0b;
   box-shadow: var(--shadow);
 }
+
 .hero-copy p{margin:12px 0 18px; max-width: 52ch}
 .hero-actions{display:flex; gap:12px; flex-wrap:wrap}
 
@@ -412,7 +442,6 @@ small{color:var(--muted)}
   flex-wrap:wrap;
 }
 
-/* each logo card */
 .sponsor-logo{
   display:flex;
   align-items:center;
@@ -463,6 +492,7 @@ small{color:var(--muted)}
   padding: 18px;
   box-shadow: var(--shadow);
 }
+
 .card.soft{ background: rgba(0,0,0,.35); }
 .card h3{margin-bottom:6px}
 
@@ -472,6 +502,7 @@ small{color:var(--muted)}
   gap: 18px;
   align-items:center;
 }
+
 @media (max-width: 880px){ .media-card{grid-template-columns:1fr} }
 
 .img-box{
@@ -482,6 +513,7 @@ small{color:var(--muted)}
   background: linear-gradient(135deg, rgba(244,185,66,.12), rgba(29,78,216,.16));
   position:relative;
 }
+
 .img-box .imgph{
   position:absolute;
   inset:0;
@@ -492,6 +524,7 @@ small{color:var(--muted)}
   color:rgba(255,255,255,.78);
   text-transform: uppercase;
 }
+
 .img-box::after{
   content:"";
   position:absolute;
@@ -508,6 +541,7 @@ small{color:var(--muted)}
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
+
 @media (max-width: 980px){ .people{grid-template-columns: repeat(2, 1fr)} }
 @media (max-width: 560px){ .people{grid-template-columns: 1fr} }
 
@@ -518,6 +552,7 @@ small{color:var(--muted)}
   border:1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.06);
 }
+
 .avatar{
   width: 92px;
   height: 92px;
@@ -530,6 +565,7 @@ small{color:var(--muted)}
   font-weight:900;
   color: rgba(255,255,255,.75);
 }
+
 .role{color: rgba(255,255,255,.78); font-weight:700}
 .person p{margin:6px 0 0}
 
@@ -546,6 +582,7 @@ small{color:var(--muted)}
   place-items:center;
   font-size: 22px;
 }
+
 .steps .card{display:flex; gap:14px; align-items:flex-start}
 .steps .card p{margin:6px 0 0}
 
@@ -557,6 +594,7 @@ small{color:var(--muted)}
   padding:0;
   list-style:none;
 }
+
 .checklist li{
   display:flex;
   gap:10px;
@@ -564,6 +602,7 @@ small{color:var(--muted)}
   margin: 8px 0;
   color: rgba(255,255,255,.86);
 }
+
 .dot{
   width: 18px; height:18px;
   border-radius: 999px;
@@ -584,6 +623,7 @@ small{color:var(--muted)}
   gap: 18px;
   align-items:stretch;
 }
+
 @media (max-width: 920px){ .tier{grid-template-columns:1fr} }
 
 .tier-card{
@@ -595,6 +635,7 @@ small{color:var(--muted)}
   display:grid;
   grid-template-columns: .95fr 1.05fr;
 }
+
 @media (max-width: 860px){ .tier-card{grid-template-columns:1fr} }
 
 .tier-card .tier-media{
@@ -602,6 +643,7 @@ small{color:var(--muted)}
   background: linear-gradient(135deg, rgba(29,78,216,.18), rgba(244,185,66,.14));
   position:relative;
 }
+
 .tier-card .tier-media .imgph{
   position:absolute; inset:0;
   display:grid; place-items:center;
@@ -610,9 +652,11 @@ small{color:var(--muted)}
   color:rgba(255,255,255,.75);
   text-transform:uppercase;
 }
+
 .tier-card .tier-body{
   padding: 20px 22px 18px;
 }
+
 .tier-name{ font-size: 2rem; font-weight: 900; }
 .tier-price{ font-weight: 900; color: rgba(255,255,255,.92); margin-top: 6px; }
 .tier-body .btn{margin-top: 10px}
@@ -639,6 +683,7 @@ small{color:var(--muted)}
   flex-wrap:wrap;
   margin-top: 10px;
 }
+
 .social-pill{
   display:flex;
   align-items:center;
@@ -651,18 +696,22 @@ small{color:var(--muted)}
   font-weight: 900;
   letter-spacing:.6px;
 }
+
 .form{
   width:min(780px, 100%);
   margin: 0 auto;
 }
+
 .field-row{
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
 @media (max-width: 680px){ .field-row{grid-template-columns:1fr} }
 
 label{display:block; font-weight:800; font-size:.9rem; margin: 12px 0 6px}
+
 input, textarea{
   width:100%;
   padding: 12px 12px;
@@ -672,11 +721,14 @@ input, textarea{
   color: var(--text);
   outline:none;
 }
+
 textarea{min-height: 120px; resize: vertical}
+
 input:focus, textarea:focus{
   border-color: rgba(244,185,66,.55);
   box-shadow: 0 0 0 3px rgba(244,185,66,.12);
 }
+
 .form-actions{
   display:flex;
   justify-content:center;
@@ -691,6 +743,7 @@ footer{
   padding: 30px 0 44px;
   background: rgba(0,0,0,.30);
 }
+
 .footer-row{
   display:flex;
   align-items:center;
@@ -698,6 +751,7 @@ footer{
   gap: 14px;
   flex-wrap:wrap;
 }
+
 .footer-row small{max-width: 70ch}
 
 /* =====================================================
@@ -718,108 +772,4 @@ footer{
 .section,
 .container{
   min-width: 0;
-}
-
-/* =====================================================
-   MOBILE BURGER MENU (replaces the goofy mobile nav)
-   ===================================================== */
-
-/* Add this element in HTML: <div class="nav-overlay" id="navOverlay"></div> */
-.nav-overlay{ display:none; }
-
-@media (max-width: 920px){
-
-  /* Hide the pill links on the page layout; drawer handles nav */
-  .nav-pill{ justify-content:flex-end; }
-
-  /* Hamburger shows (you already had this, keeping it explicit) */
-  .hamburger{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    z-index: 1002;
-  }
-
-  /* Turn nav-links into a right-side drawer */
-  .nav-links{
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100dvh;
-    width: min(78vw, 320px);
-    padding: 18px;
-    border-radius: 0;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 10px;
-
-    background: rgba(0,0,0,.92);
-    backdrop-filter: blur(12px);
-    border-left: 1px solid rgba(255,255,255,.12);
-
-    transform: translateX(110%);
-    transition: transform .22s ease;
-    z-index: 1001;
-
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .nav-links a{
-    display:flex;
-    padding: 12px 14px;
-    border-radius: 14px;
-    justify-content: flex-start;
-  }
-
-  /* Overlay */
-  .nav-overlay{
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.55);
-    display:none;
-    z-index: 1000;
-  }
-
-  /* Open state controlled by JS: body.nav-open */
-  body.nav-open .nav-links{ transform: translateX(0); }
-  body.nav-open .nav-overlay{ display:block; }
-
-  /* lock scroll behind drawer */
-  body.nav-open{
-    overflow: hidden;
-    touch-action: none;
-  }
-}
-
-
-/* =====================================================
-   SAFARI SCROLL FIX (iOS Safari)
-   ===================================================== */
-
-/* Let Safari scroll the page normally */
-html{
-  height: 100%;
-  overflow-x: hidden !important;
-  overflow-y: visible !important;
-}
-
-body{
-  min-height: 100%;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* When menu is open, lock scroll in an iOS-safe way */
-@media (max-width: 920px){
-  body.nav-open{
-    position: fixed;
-    width: 100%;
-    overflow: hidden !important;
-    /* REMOVE touch-action:none (can break Safari scrolling/taps) */
-    touch-action: auto;
-  }
 }
