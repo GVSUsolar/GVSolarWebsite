@@ -271,6 +271,7 @@ small{color:var(--muted)}
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
     z-index: 1006;
   }
 
@@ -298,7 +299,7 @@ small{color:var(--muted)}
 
     z-index: 1005;
 
-    /* 🔑 iOS FIX */
+    /* iOS: prevent off-canvas from stealing taps when closed */
     pointer-events: none;
 
     overflow-y: auto;
@@ -325,24 +326,31 @@ small{color:var(--muted)}
     left: 0;
     bottom: 0;
 
-    /* Lea*
+    /* leave space for the drawer on the right */
+    right: min(78vw, 320px);
 
-@media (max-width: 720px){
-  .grid-3{grid-template-columns: 1fr}
+    background: rgba(0,0,0,.55);
+    display: none;
+
+    z-index: 1004;
+  }
+
+  body.nav-open .nav-overlay{
+    display: block;
+  }
+
+  /* =========================
+     iOS-safe scroll lock (JS will set body top)
+     ========================= */
+  body.nav-open{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
 }
 
-/* =========================
-   Hero
-   ========================= */
-.hero{
-  padding: 34px 0 26px;
-}
-.hero-wrap{
-  display:grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 24px;
-  align-items:stretch;
-}
 @media (max-width: 980px){
   .hero-wrap{grid-template-columns:1fr}
 }
